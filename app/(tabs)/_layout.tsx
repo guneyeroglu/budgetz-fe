@@ -1,43 +1,48 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
+
+import { TabBar } from '@/app/components/TabBar';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+      }}
+      tabBar={TabBar}
+    >
       <Tabs.Screen
-        name="index"
+        name='index'
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ size, color }) => <FontAwesome6 name='house' size={size} color={color} />,
+          tabBarLabel: () => null,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name='debts'
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Debts',
+          tabBarIcon: ({ size, color }) => <FontAwesome6 name='file-invoice-dollar' size={size} color={color} />,
+          tabBarLabel: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name='incomes'
+        options={{
+          title: 'Incomes',
+          tabBarIcon: ({ size, color }) => <FontAwesome6 name='hand-holding-dollar' size={size} color={color} />,
+          tabBarLabel: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name='payments'
+        options={{
+          title: 'Payments',
+          tabBarIcon: ({ size, color }) => <FontAwesome6 name='money-bill-transfer' size={size} color={color} />,
+          tabBarLabel: () => null,
         }}
       />
     </Tabs>

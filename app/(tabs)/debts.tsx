@@ -1,10 +1,10 @@
 import { Layout } from '@/app/components/Layout';
 import { Text } from '@/app/components/Text';
 
-export default function HomeScreen() {
+export default function DebtsScreen() {
   return (
     <Layout>
-      <Text>Anasayfa Ekranı</Text>
+      <Text>Giderler Ekranı</Text>
     </Layout>
   );
 }
