@@ -1,11 +1,11 @@
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { FontAwesome6 } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { Card } from '@/components/Card';
 import { DonutChart } from '@/components/Chart';
 import { Layout } from '@/components/Layout';
+import { MonthYearPicker } from '@/components/MonthYearPicker';
 import { Text } from '@/components/Text';
 import { ICardChip } from '@/global/interfaces';
 import { calculatePercentage, convertMoney, formatDate, useAppFont } from '@/global/utils';
@@ -95,14 +95,10 @@ export default function HomeScreen() {
     },
   ];
 
-  const handleMenu = (): void => {};
-
   return (
     <Layout>
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={1} onPress={handleMenu}>
-          <FontAwesome6 name='bars' size={24} color={COLORS.text} />
-        </TouchableOpacity>
+        <MonthYearPicker />
         <View style={styles.infos}>
           <Text fontSize='md'>{name}</Text>
           <Text fontSize='xs' color='subtext'>

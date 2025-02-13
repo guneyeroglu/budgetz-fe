@@ -36,6 +36,7 @@ const APP_COLORS = {
   info: APPLE_COLORS.cyan,
 
   accent: APPLE_COLORS.teal,
+  transparent: 'transparent',
   shadow: 'rgb(0, 0, 0)',
 };
 

@@ -1,11 +1,13 @@
 import { FC } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { NavigationRoute, ParamListBase } from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
 
 import { COLORS, SPACING, TYPOGRAPHY } from '@/theme';
+
+import { Button } from '../Button';
 
 export const TabBar: FC<BottomTabBarProps> = ({ descriptors, insets, navigation, state }) => {
   return (
@@ -16,14 +18,14 @@ export const TabBar: FC<BottomTabBarProps> = ({ descriptors, insets, navigation,
         const onPress = (): void => navigation.navigate(route.name);
 
         return (
-          <TouchableOpacity key={route.key} style={styles.tabBar} activeOpacity={1} onPress={onPress}>
+          <Button key={route.key} style={styles.tabBar} onPress={onPress}>
             {options.tabBarIcon &&
               options.tabBarIcon({
                 focused: isFocused,
                 color: isFocused ? COLORS.accent : COLORS.disabledText,
                 size: TYPOGRAPHY.fontSize.xxl,
               })}
-          </TouchableOpacity>
+          </Button>
         );
       })}
     </BlurView>
