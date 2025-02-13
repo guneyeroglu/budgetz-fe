@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Text as RNText, TextProps } from 'react-native';
 
 import { COLORS, TYPOGRAPHY } from '@/theme';

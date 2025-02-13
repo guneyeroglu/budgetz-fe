@@ -1,10 +1,12 @@
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
+import { StyleSheet } from 'react-native';
 
 import axios from 'axios';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import 'react-native-reanimated';
 
@@ -31,7 +33,7 @@ export default function RootLayout() {
   }
 
   return (
-    <Fragment>
+    <GestureHandlerRootView style={styles.gestureContainer}>
       <StatusBar style='light' />
       <Stack>
         <Stack.Screen
@@ -42,6 +44,12 @@ export default function RootLayout() {
         />
         <Stack.Screen name='+not-found' />
       </Stack>
-    </Fragment>
+    </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  gestureContainer: {
+    flex: 1,
+  },
+});

@@ -1,9 +1,7 @@
-import React from 'react';
-
 import { FontAwesome6 } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 
-import { TabBar } from '@/app/components/TabBar';
+import { TabBar } from '@/components/TabBar';
 
 export default function TabLayout() {
   return (
@@ -13,14 +11,6 @@ export default function TabLayout() {
       }}
       tabBar={TabBar}
     >
-      <Tabs.Screen
-        name='index'
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ size, color }) => <FontAwesome6 name='house' size={size} color={color} />,
-          tabBarLabel: () => null,
-        }}
-      />
       <Tabs.Screen
         name='debts'
         options={{
@@ -38,10 +28,26 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name='index'
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ size, color }) => <FontAwesome6 name='house' size={size} color={color} />,
+          tabBarLabel: () => null,
+        }}
+      />
+      <Tabs.Screen
         name='payments'
         options={{
           title: 'Payments',
           tabBarIcon: ({ size, color }) => <FontAwesome6 name='money-bill-transfer' size={size} color={color} />,
+          tabBarLabel: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name='settings'
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ size, color }) => <FontAwesome6 name='gear' size={size} color={color} />,
           tabBarLabel: () => null,
         }}
       />

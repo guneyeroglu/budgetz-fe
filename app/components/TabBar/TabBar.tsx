@@ -1,14 +1,15 @@
 import { FC } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { NavigationRoute, ParamListBase } from '@react-navigation/native';
+import { BlurView } from 'expo-blur';
 
 import { COLORS, SPACING, TYPOGRAPHY } from '@/theme';
 
 export const TabBar: FC<BottomTabBarProps> = ({ descriptors, insets, navigation, state }) => {
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+    <BlurView intensity={20} style={[styles.container, { paddingBottom: insets.bottom }]}>
       {state.routes.map((route: NavigationRoute<ParamListBase, string>, index: number) => {
         const { options } = descriptors[route.key];
         const isFocused: boolean = state.index === index;
@@ -25,7 +26,7 @@ export const TabBar: FC<BottomTabBarProps> = ({ descriptors, insets, navigation,
           </TouchableOpacity>
         );
       })}
-    </View>
+    </BlurView>
   );
 };
 

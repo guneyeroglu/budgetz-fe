@@ -1,5 +1,5 @@
-import { Layout } from '@/app/components/Layout';
-import { Text } from '@/app/components/Text';
+import { Layout } from '@/components/Layout';
+import { Text } from '@/components/Text';
 
 export default function DebtsScreen() {
   return (

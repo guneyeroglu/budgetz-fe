@@ -1,10 +1,10 @@
 import { Layout } from '@/components/Layout';
 import { Text } from '@/components/Text';
 
-export default function PaymentsScreen() {
+export default function SettingsScreen() {
   return (
     <Layout>
-      <Text>Ödemeler Ekranı</Text>
+      <Text>Ayarlar Ekranı</Text>
     </Layout>
   );
 }
