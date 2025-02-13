@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { es2020: true },
+  env: { es2020: true, node: true },
   parser: '@typescript-eslint/parser',
   plugins: ['prettier', 'react-refresh', 'react', 'react-native', '@typescript-eslint', 'import'],
   extends: [
@@ -8,6 +8,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:react-native/all',
     'plugin:import/recommended',
     'plugin:import/typescript',
@@ -32,11 +33,15 @@ module.exports = {
     'react-native/no-color-literals': 'off',
     'react-native/no-single-element-style-arrays': 'warn',
     'react/react-in-jsx-scope': 'off',
+    'import/no-unresolved': 'off',
     'import/order': [
       'warn',
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-        pathGroups: [{ pattern: '{react,react-native}', group: 'external', position: 'before' }],
+        pathGroups: [
+          { pattern: '{react,react-native}', group: 'external', position: 'before' },
+          { pattern: '@/**', group: 'internal' },
+        ],
         pathGroupsExcludedImportTypes: ['builtin'],
         alphabetize: { order: 'asc', caseInsensitive: true },
         'newlines-between': 'always',
@@ -54,15 +59,6 @@ module.exports = {
   ],
   settings: {
     'import/ignore': ['react-native'],
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-        project: ['./tsconfig.json'],
-      },
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        moduleDirectory: ['node_modules', './'], // Root ve node_modules çözümlensin
-      },
-    },
+    react: { version: 'detect' },
   },
 };
