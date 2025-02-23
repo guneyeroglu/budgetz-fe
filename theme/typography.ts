@@ -4,7 +4,7 @@ export const TYPOGRAPHY = {
     regular: 'Poppins-400',
     medium: 'Poppins-500',
     bold: 'Poppins-800',
-  },
+  } as const,
   fontSize: {
     xxs: 10,
     xs: 12,
@@ -12,7 +12,7 @@ export const TYPOGRAPHY = {
     md: 16,
     lg: 18,
     xl: 22,
-    xxl: 26,
-    xxxl: 32,
-  },
-};
+    '2xl': 26,
+    '3xl': 32,
+  } as const,
+} as const;

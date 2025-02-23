@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Text } from '@/components/Text';
-import { COLORS, SPACING } from '@/theme';
+import { COLORS, RADIUS, SPACING } from '@/theme';
 
 interface IText {
   label?: string;
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   chip: {
     padding: SPACING.sm,
-    borderRadius: 100,
+    borderRadius: RADIUS.full,
   },
   textAndSubText: {
     flex: 1,

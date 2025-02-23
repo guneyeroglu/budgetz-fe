@@ -1,18 +1,22 @@
 import { FC, PropsWithChildren } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
 import { COLORS, TYPOGRAPHY } from '@/theme';
+
+import { Header } from '../Header';
 
 interface IProps extends PropsWithChildren {
   style?: StyleProp<ViewStyle>;
+  showHeader?: boolean;
 }
 
-export const Layout: FC<IProps> = ({ children, style = {} }) => {
-  const { top } = useSafeAreaInsets();
-
-  return <View style={[styles.container, { paddingTop: top }, style]}>{children}</View>;
+export const Layout: FC<IProps> = ({ children, style = {}, showHeader = true }) => {
+  return (
+    <View style={[styles.container, style]}>
+      {showHeader && <Header />}
+      {children}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

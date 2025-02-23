@@ -9,46 +9,41 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
       }}
-      tabBar={TabBar}
+      tabBar={(props) => <TabBar {...props} />}
     >
       <Tabs.Screen
         name='debts'
         options={{
-          title: 'Debts',
+          title: 'Giderler',
           tabBarIcon: ({ size, color }) => <FontAwesome6 name='file-invoice-dollar' size={size} color={color} />,
-          tabBarLabel: () => null,
         }}
       />
       <Tabs.Screen
         name='incomes'
         options={{
-          title: 'Incomes',
+          title: 'Gelirler',
           tabBarIcon: ({ size, color }) => <FontAwesome6 name='hand-holding-dollar' size={size} color={color} />,
-          tabBarLabel: () => null,
         }}
       />
       <Tabs.Screen
         name='index'
         options={{
-          title: 'Home',
+          title: 'Anasayfa',
           tabBarIcon: ({ size, color }) => <FontAwesome6 name='house' size={size} color={color} />,
-          tabBarLabel: () => null,
         }}
       />
       <Tabs.Screen
         name='payments'
         options={{
-          title: 'Payments',
+          title: 'Ödemeler',
           tabBarIcon: ({ size, color }) => <FontAwesome6 name='money-bill-transfer' size={size} color={color} />,
-          tabBarLabel: () => null,
         }}
       />
       <Tabs.Screen
         name='settings'
         options={{
-          title: 'Settings',
+          title: 'Ayarlar',
           tabBarIcon: ({ size, color }) => <FontAwesome6 name='gear' size={size} color={color} />,
-          tabBarLabel: () => null,
         }}
       />
     </Tabs>

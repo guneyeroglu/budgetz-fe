@@ -5,22 +5,45 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Card } from '@/components/Card';
 import { DonutChart } from '@/components/Chart';
 import { Layout } from '@/components/Layout';
-import { MonthYearPicker } from '@/components/MonthYearPicker';
+import { ListCard } from '@/components/ListCard';
 import { Text } from '@/components/Text';
 import { ICardChip } from '@/global/interfaces';
 import { calculatePercentage, convertMoney, formatDate, useAppFont } from '@/global/utils';
 import { COLORS, SPACING, TYPOGRAPHY } from '@/theme';
 
-export default function HomeScreen() {
-  const name: string = 'Güney Eroğlu';
-  const today: Date = new Date();
-  const todayFormatted: string = formatDate(today.toDateString());
+interface IComingDebt {
+  debtId: number;
+  dueDate: string;
+  remainingDays: number;
+  debtInfoText: string;
+  debtInfoSource: string;
+  debtAmount: number;
+}
 
-  const monthlyIncome: number = 10000;
-  const monthlyExpense: number = 5000;
-  const paidDebt: number = 3500;
+export default function HomeScreen() {
+  const monthlyIncome: number = 10_000;
+  const monthlyExpense: number = 5_000;
+  const paidDebt: number = 3_500;
   const remainingIncome: number = monthlyIncome - paidDebt;
   const remainingExpense: number = monthlyExpense - paidDebt;
+  const comingDebtList: Array<IComingDebt> = [
+    {
+      debtId: 123456,
+      remainingDays: 0,
+      dueDate: formatDate(new Date('2025-02-24').toISOString(), { hideYear: true }),
+      debtInfoText: 'İhtiyaç Kredisi',
+      debtInfoSource: 'Garanti Bankası',
+      debtAmount: 1_000,
+    },
+    {
+      debtId: 123457,
+      remainingDays: 4,
+      dueDate: formatDate(new Date('2025-02-28').toISOString(), { hideYear: true }),
+      debtInfoText: 'Kredi Kartı Borcu',
+      debtInfoSource: 'YapıKredi Bankası',
+      debtAmount: 500,
+    },
+  ];
 
   const monthlyIncomeChipColor: string = COLORS.success;
   const monthlyExpenseChipColor: string = COLORS.warning;
@@ -41,7 +64,7 @@ export default function HomeScreen() {
       },
       subtext: {
         label: convertMoney(monthlyIncome),
-        color: COLORS.subtext,
+        color: COLORS.text,
       },
     },
     {
@@ -53,7 +76,7 @@ export default function HomeScreen() {
       },
       subtext: {
         label: convertMoney(monthlyExpense),
-        color: COLORS.subtext,
+        color: COLORS.text,
       },
     },
 
@@ -66,7 +89,7 @@ export default function HomeScreen() {
       },
       subtext: {
         label: convertMoney(paidDebt),
-        color: COLORS.subtext,
+        color: COLORS.text,
       },
     },
     {
@@ -78,7 +101,7 @@ export default function HomeScreen() {
       },
       subtext: {
         label: convertMoney(remainingExpense),
-        color: COLORS.subtext,
+        color: COLORS.text,
       },
     },
     {
@@ -90,28 +113,18 @@ export default function HomeScreen() {
       },
       subtext: {
         label: convertMoney(remainingIncome),
-        color: COLORS.subtext,
+        color: COLORS.text,
       },
     },
   ];
 
   return (
     <Layout>
-      <View style={styles.header}>
-        <MonthYearPicker />
-        <View style={styles.infos}>
-          <Text fontSize='md'>{name}</Text>
-          <Text fontSize='xs' color='subtext'>
-            {todayFormatted}
-          </Text>
-        </View>
-      </View>
       <ScrollView style={styles.scrollContainer}>
-        <View style={styles.cardContainer}>
+        <View style={styles.contentContainer}>
           <Card
-            title='Aylık Finansal Özet'
+            title='Aylık Finansal Özetim'
             chips={incomesChips}
-            cardStyle={styles.successCard}
             ChartComponent={() => (
               <DonutChart
                 data={[
@@ -138,6 +151,21 @@ export default function HomeScreen() {
               />
             )}
           />
+          <View>
+            <Text fontSize='xl'>Yaklaşan Ödemelerim</Text>
+            <View style={styles.comingDebtList}>
+              {comingDebtList.map((list: IComingDebt) => (
+                <ListCard
+                  key={list.debtId}
+                  title={list.debtInfoText}
+                  subtitle={list.debtInfoSource}
+                  amount={convertMoney(list.debtAmount)}
+                  dueDate={list.dueDate}
+                  remainingDays={list.remainingDays}
+                />
+              ))}
+            </View>
+          </View>
         </View>
       </ScrollView>
     </Layout>
@@ -145,30 +173,16 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: SPACING.md,
-    paddingBottom: SPACING.md,
-  },
-  infos: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
-  },
   scrollContainer: {
     flex: 1,
   },
-  cardContainer: {
+  contentContainer: {
     flex: 1,
     padding: SPACING.md,
-    gap: SPACING.xxl,
+    gap: SPACING['2xl'],
   },
-  successCard: {
-    // borderLeftWidth: 4,
-    // borderLeftColor: COLORS.disabledText,
+  comingDebtList: {
+    marginTop: SPACING.md,
+    gap: SPACING.md,
   },
 });

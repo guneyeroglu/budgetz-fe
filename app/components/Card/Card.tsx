@@ -3,7 +3,7 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { ICardChip } from '@/global/interfaces';
 import { getShadow } from '@/global/utils';
-import { COLORS, SPACING } from '@/theme';
+import { COLORS, RADIUS, SPACING } from '@/theme';
 
 import { Chip } from '../Chip';
 import { Text } from '../Text';
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.cardBackground,
     borderWidth: 2,
     borderColor: COLORS.border,
-    borderRadius: 8,
+    borderRadius: RADIUS.lg,
     ...getShadow(),
   },
   innerCard: {

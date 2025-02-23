@@ -1,18 +1,16 @@
 import { FC, Fragment, useState } from 'react';
 import { View, StyleSheet, Modal } from 'react-native';
 
+import { FontAwesome6 } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { COLORS, SPACING } from '@/theme';
+import { addOpacity } from '@/global/utils';
+import { useMonthAndYear } from '@/store';
+import { COLORS, RADIUS, SPACING, TYPOGRAPHY } from '@/theme';
 
 import { Button } from '../Button';
 import { Text } from '../Text';
-
-interface IMonthAndYear {
-  month: number;
-  year: number;
-}
 
 interface IPickerContent {
   label: string;
@@ -24,18 +22,15 @@ export const MonthYearPicker: FC = () => {
     label: new Date(0, i + 1).toLocaleString('tr-TR', { month: 'long' }),
     value: i + 1,
   }));
-
   const years: IPickerContent[] = Array.from({ length: 6 }, (_: unknown, i: number) => ({
     label: (2025 + i).toString(),
     value: 2025 + i,
   }));
 
+  const { monthAndYear, setMonthAndYear } = useMonthAndYear();
   const { bottom } = useSafeAreaInsets();
-  const [isModalVisible, setModalVisible] = useState<boolean>(true);
-  const [monthAndYear, setMonthAndYear] = useState<IMonthAndYear>({
-    month: new Date().getMonth() + 1,
-    year: new Date().getFullYear(),
-  });
+  const [isModalVisible, setModalVisible] = useState<boolean>(false);
+
   const [selectedMonth, setSelectedMonth] = useState<number>(monthAndYear.month);
   const [selectedYear, setSelectedYear] = useState<number>(monthAndYear.year);
 
@@ -63,8 +58,9 @@ export const MonthYearPicker: FC = () => {
 
   return (
     <Fragment>
-      <Button onPress={toggleModal}>
+      <Button style={styles.headerDate} onPress={toggleModal}>
         <Text>{getMonthAndYearLabel()}</Text>
+        <FontAwesome6 name='caret-down' size={TYPOGRAPHY.fontSize.xl} color={COLORS.text} />
       </Button>
       <Modal
         visible={isModalVisible}
@@ -133,6 +129,15 @@ export const MonthYearPicker: FC = () => {
 };
 
 const styles = StyleSheet.create({
+  headerDate: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: SPACING.sm,
+    backgroundColor: addOpacity(COLORS.gray2, 0.5),
+    padding: SPACING.sm,
+    borderRadius: RADIUS.md,
+  },
   modal: {
     flex: 1,
   },

@@ -18,7 +18,7 @@ const APPLE_COLORS = {
   gray4: 'rgb(58, 58, 60)',
   gray5: 'rgb(44, 44, 46)',
   gray6: 'rgb(28, 28, 30)',
-};
+} as const;
 
 const APP_COLORS = {
   primary: 'rgb(10, 18, 45)',
@@ -38,9 +38,9 @@ const APP_COLORS = {
   accent: APPLE_COLORS.teal,
   transparent: 'transparent',
   shadow: 'rgb(0, 0, 0)',
-};
+} as const;
 
 export const COLORS = {
   ...APPLE_COLORS,
   ...APP_COLORS,
-};
+} as const;

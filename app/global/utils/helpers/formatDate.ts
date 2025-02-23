@@ -1,4 +1,8 @@
-export const formatDate = (dateString: string): string => {
+interface IFormatDateOptions {
+  hideYear?: boolean;
+}
+
+export const formatDate = (dateString: string, options?: IFormatDateOptions): string => {
   if (!dateString) return '-';
 
   const date = new Date(dateString);
@@ -8,7 +12,7 @@ export const formatDate = (dateString: string): string => {
   const formatter: Intl.DateTimeFormat = new Intl.DateTimeFormat('tr-TR', {
     day: '2-digit',
     month: 'long',
-    year: 'numeric',
+    ...(!options?.hideYear && { year: 'numeric' }),
   });
 
   return formatter.format(date);

@@ -96,7 +96,7 @@ export const DonutChart: FC<IProps> = ({
   return (
     <View style={styles.container}>
       <View style={styles.chartInfoTextContainer}>
-        <Text style={styles.chartInfoText} color='subtext' fontSize='xxs'>
+        <Text style={styles.chartInfoText} color='text' fontSize='xxs'>
           {chartInfoText}
         </Text>
       </View>
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: SPACING.md,
+    gap: SPACING.xl,
   },
   chartInfoTextContainer: {
     flex: 1,
