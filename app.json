@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "budgetz-fe",
-    "slug": "budgetz-fe",
+    "slug": "budgetz",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -36,6 +36,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "54de73a8-95da-4ba4-938f-a86c4d90f07a"
+      }
+    },
+    "owner": "guneyeroglu"
   }
 }
